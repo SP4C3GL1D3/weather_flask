@@ -1,0 +1,59 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.weather-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    max-width: 400px;
+    text-align: center;
+}
+
+.weather-container h1, .weather-container p, .weather-container a {
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.weather-description {
+    margin-bottom: 20px;
+}
+
+.weather-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.zmenapolohy {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.zmenapolohy a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.zmenapolohy a:hover {
+    text-decoration: underline;
+}

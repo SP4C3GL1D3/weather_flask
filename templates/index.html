@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Počasí</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div id="map"></div>
+
+    <div class="weather-container">
+        <h1>Počasí v {{ misto }}</h1>
+        <p>Teplota: {{ teplota }} °C</p>
+        <p class="weather-description">
+            {% if popis_pocasi == "Clear" %}
+                <i class="bi bi-brightness-high text-warning weather-icon"></i> Slunečno
+            {% elif popis_pocasi == "Rain" %}
+                <i class="bi bi-cloud-rain text-primary weather-icon"></i> Déšť
+            {% elif popis_pocasi == "Clouds" %}
+                <i class="bi bi-cloud text-secondary weather-icon"></i> Zataženo    
+            {% elif popis_pocasi == "Snow" %}
+                <i class="bi bi-snow text-info weather-icon"></i> Sněží
+            {% elif popis_pocasi == "Thunderstorm" %}
+                <i class="bi bi-lightning text-danger weather-icon"></i> Bouřka
+            {% elif popis_pocasi == "Mist" %}
+                <i class="bi bi-cloud-fog text-secondary weather-icon"></i> Mlha
+            {% elif popis_pocasi == "Wind" %}
+                <i class="bi bi-wind text-secondary weather-icon"></i> Větrno
+            {% elif popis_pocasi == "Hail" %}
+                <i class="bi bi-hail text-info weather-icon"></i> Krupobití
+            {% else %}
+                <i class="bi bi-question-circle text-muted weather-icon"></i> Neznámý stav
+            {% endif %}
+        </p>
+        <div class="zmenapolohy">
+            <a href="/misto">Změnit polohu</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpc"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    </script>
+</body>
+</html>
